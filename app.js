@@ -24455,6 +24455,11 @@ init = function() {
         window.Homecare = Conf.Homecare = data.homecare;
         window.Remarks = Conf.Remarks = data.remarks;
         window.lifestyle = Conf.lifestyle = data.lifestyle;
+        alert(data.causes.length);
+        alert(data.facial.length);
+        alert(data.homecare.length);
+        alert(data.remakrs.length);
+        alert(data.lifestyle.length);
         Store.clear();
         appView = new AppView({
           size: [Conf.screenWidth, Conf.screenHeight]
