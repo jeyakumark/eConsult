@@ -26429,12 +26429,12 @@ module.exports = checklistPage = (function(_super) {
       return this.desiredResultText.setContent(text);
     };
     updateQ1Box = function() {
-      var i, json, text, x, _i, _ref;
+      var i, json, text, x, _i, _j, _ref, _ref1;
       text = '';
       this.opLifestyle = (function() {
-        var _i, _ref, _results;
+        var _i, _results;
         _results = [];
-        for (x = _i = 0, _ref = lifestyle.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+        for (x = _i = 0; _i <= 3; x = ++_i) {
           _results.push(0);
         }
         return _results;
@@ -26442,6 +26442,11 @@ module.exports = checklistPage = (function(_super) {
       for (i = _i = 0, _ref = lifestyle.length - 1; _i <= _ref; i = _i += 1) {
         json = JSON.parse(JSON.stringify(lifestyle[i]));
         this.opLifestyle[i] = json.op;
+      }
+      if (lifestyle.length < 4) {
+        for (i = _j = _ref1 = lifestyle.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
+          this.opLifestyle[i] = "";
+        }
       }
       if (Session.currentClient.cl_lifestyle_opt1) {
         text = text + this.opLifestyle[0];
@@ -26458,12 +26463,12 @@ module.exports = checklistPage = (function(_super) {
       return this.answerTextQ1.setContent(text);
     };
     updateQ3Box = function() {
-      var i, json, text, x, _i, _ref;
+      var i, json, text, x, _i, _j, _ref, _ref1;
       text = '';
       this.opCauses = (function() {
-        var _i, _ref, _results;
+        var _i, _results;
         _results = [];
-        for (x = _i = 0, _ref = causes.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+        for (x = _i = 0; _i <= 3; x = ++_i) {
           _results.push(0);
         }
         return _results;
@@ -26471,6 +26476,11 @@ module.exports = checklistPage = (function(_super) {
       for (i = _i = 0, _ref = causes.length - 1; _i <= _ref; i = _i += 1) {
         json = JSON.parse(JSON.stringify(causes[i]));
         this.opCauses[i] = json.op;
+      }
+      if (causes.length < 4) {
+        for (i = _j = _ref1 = causes.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
+          this.opCauses[i] = "";
+        }
       }
       if (Session.currentClient.cl_causes_opt1) {
         text = text + this.opCauses[0];
@@ -26487,12 +26497,12 @@ module.exports = checklistPage = (function(_super) {
       return this.answerTextQ3.setContent(text);
     };
     updateQ4Box = function() {
-      var i, json, text, x, _i, _ref;
+      var i, json, text, x, _i, _j, _ref, _ref1;
       text = '';
       this.opHomecare = (function() {
-        var _i, _ref, _results;
+        var _i, _results;
         _results = [];
-        for (x = _i = 0, _ref = homecare.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+        for (x = _i = 0; _i <= 3; x = ++_i) {
           _results.push(0);
         }
         return _results;
@@ -26500,6 +26510,11 @@ module.exports = checklistPage = (function(_super) {
       for (i = _i = 0, _ref = homecare.length - 1; _i <= _ref; i = _i += 1) {
         json = JSON.parse(JSON.stringify(homecare[i]));
         this.opHomecare[i] = json.op;
+      }
+      if (homecare.length < 4) {
+        for (i = _j = _ref1 = homecare.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
+          this.opHomecare[i] = "";
+        }
       }
       if (Session.currentClient.cl_homecare_opt1) {
         text = text + this.opHomecare[0];
@@ -26516,12 +26531,12 @@ module.exports = checklistPage = (function(_super) {
       return this.answerTextQ4.setContent(text);
     };
     updateQ5Box = function() {
-      var i, json, text, x, _i, _ref;
+      var i, json, text, x, _i, _j, _ref, _ref1;
       text = '';
       this.opFacial = (function() {
-        var _i, _ref, _results;
+        var _i, _results;
         _results = [];
-        for (x = _i = 0, _ref = facial.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+        for (x = _i = 0; _i <= 3; x = ++_i) {
           _results.push(0);
         }
         return _results;
@@ -26529,6 +26544,11 @@ module.exports = checklistPage = (function(_super) {
       for (i = _i = 0, _ref = facial.length - 1; _i <= _ref; i = _i += 1) {
         json = JSON.parse(JSON.stringify(facial[i]));
         this.opFacial[i] = json.op;
+      }
+      if (facial.length < 4) {
+        for (i = _j = _ref1 = facial.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
+          this.opFacial[i] = "";
+        }
       }
       if (Session.currentClient.cl_facial_opt1) {
         text = text + this.opFacial[0];
@@ -26545,12 +26565,12 @@ module.exports = checklistPage = (function(_super) {
       return this.answerTextQ5.setContent(text);
     };
     updateQ6Box = function() {
-      var i, json, text, x, _i, _ref;
+      var i, json, text, x, _i, _j, _ref, _ref1;
       text = '';
       this.opRemarks = (function() {
-        var _i, _ref, _results;
+        var _i, _results;
         _results = [];
-        for (x = _i = 0, _ref = remarks.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+        for (x = _i = 0; _i <= 3; x = ++_i) {
           _results.push(0);
         }
         return _results;
@@ -26558,6 +26578,11 @@ module.exports = checklistPage = (function(_super) {
       for (i = _i = 0, _ref = remarks.length - 1; _i <= _ref; i = _i += 1) {
         json = JSON.parse(JSON.stringify(remarks[i]));
         this.opRemarks[i] = json.op;
+      }
+      if (remarks.length < 4) {
+        for (i = _j = _ref1 = remarks.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
+          this.opRemarks[i] = "";
+        }
       }
       if (Session.currentClient.cl_remarks_opt1) {
         text = text + this.opRemarks[0];
