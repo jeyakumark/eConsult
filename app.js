@@ -29230,7 +29230,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.picture) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.picture); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"\" />\r\n  </div>\r\n</div>\r\n-->\r\n\r\n\r\n<iframe src=\"http://testsvr.eurogrp.com:8017/editor.html\"></iframe>";
+    + "\" class=\"\" />\r\n  </div>\r\n</div>\r\n-->\r\n\r\n\r\n<iframe src=\"http://testsvr.eurogrp.com:8017/editor.html?img=";
+  if (helper = helpers.picture) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.picture); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" width=\"1024\" height=\"768\"></iframe>";
   return buffer;
   });
 
