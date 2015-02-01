@@ -32586,9 +32586,9 @@ module.exports = qCauses = (function(_super) {
     });
     data = Conf.Causes;
     this.op = (function() {
-      var _i, _ref, _results;
+      var _i, _results;
       _results = [];
-      for (x = _i = 0, _ref = data.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+      for (x = _i = 0; _i <= 3; x = ++_i) {
         _results.push(0);
       }
       return _results;
@@ -32743,9 +32743,9 @@ module.exports = qFacial = (function(_super) {
     });
     data = Conf.Facial;
     this.op = (function() {
-      var _i, _ref, _results;
+      var _i, _results;
       _results = [];
-      for (x = _i = 0, _ref = data.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+      for (x = _i = 0; _i <= 3; x = ++_i) {
         _results.push(0);
       }
       return _results;
@@ -32912,9 +32912,9 @@ module.exports = qHomecare = (function(_super) {
     });
     data = Conf.Homecare;
     this.op = (function() {
-      var _i, _ref, _results;
+      var _i, _results;
       _results = [];
-      for (x = _i = 0, _ref = data.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+      for (x = _i = 0; _i <= 3; x = ++_i) {
         _results.push(0);
       }
       return _results;
@@ -33069,9 +33069,9 @@ module.exports = qLifeStyle = (function(_super) {
     });
     data = Conf.lifestyle;
     this.op = (function() {
-      var _i, _ref, _results;
+      var _i, _results;
       _results = [];
-      for (x = _i = 0, _ref = data.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+      for (x = _i = 0; _i <= 3; x = ++_i) {
         _results.push(0);
       }
       return _results;
@@ -33238,9 +33238,9 @@ module.exports = qRemarks = (function(_super) {
     });
     data = Conf.Remarks;
     this.op = (function() {
-      var _i, _ref, _results;
+      var _i, _results;
       _results = [];
-      for (x = _i = 0, _ref = data.length - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; x = 0 <= _ref ? ++_i : --_i) {
+      for (x = _i = 0; _i <= 3; x = ++_i) {
         _results.push(0);
       }
       return _results;
@@ -38848,6 +38848,16 @@ module.exports = Toggleable = (function() {
         return this.text.setProperties({
           color: this.options.inactiveColor
         });
+      }
+    }
+  };
+
+  return Toggleable;
+
+})();
+
+
+},{}]},{},[68])        });
       }
     }
   };
