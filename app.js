@@ -28718,10 +28718,12 @@ module.exports = snapPage = (function(_super) {
     })(this));
     this._eventInput.on("right_frame_double_tapped", (function(_this) {
       return function() {
-        var id;
+        var id, so;
         if (Session.currentPhoto) {
           id = Session.currentPhoto.getUniqId();
           if (id === _this.doubleTapBuffer) {
+            so = cordova.plugins.screenorientation;
+            so.setOrientation(so.Orientation.PORTRAIT);
             return Dispatcher.emit('show_full_picture');
           }
         }
