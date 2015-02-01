@@ -24433,6 +24433,7 @@ init = function() {
   return deviceAuthenticated.done(function(data) {
     var Checklist;
     if (data.Status === "OK") {
+      alert("success getting Config");
       window.imageServerURL = Conf.imageServerURL = data.PrimaryNasIp;
       window.firstPage = Conf.firstPage = "Login";
       window.backend = Conf.backend = data.DataIp;
@@ -38848,16 +38849,6 @@ module.exports = Toggleable = (function() {
         return this.text.setProperties({
           color: this.options.inactiveColor
         });
-      }
-    }
-  };
-
-  return Toggleable;
-
-})();
-
-
-},{}]},{},[68])        });
       }
     }
   };
