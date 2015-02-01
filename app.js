@@ -28101,6 +28101,7 @@ module.exports = resultPage = (function(_super) {
 
   resultPage.prototype.fetchFromBackend = function(query) {
     var fetchPromise;
+    alert(query);
     fetchPromise = $.ajax({
       url: "" + Conf.backend + "/clients_with_results",
       dataType: "json",
@@ -28266,6 +28267,7 @@ module.exports = resultPage = (function(_super) {
         console.log('back from promise');
         console.log(res);
         _.each(res, function(client) {
+          alert(client);
           console.log(client);
           if (client.name === Session.currentClient.name) {
             return;
