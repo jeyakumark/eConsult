@@ -24433,7 +24433,6 @@ init = function() {
   return deviceAuthenticated.done(function(data) {
     var Checklist;
     if (data.Status === "OK") {
-      alert("success getting Config");
       window.imageServerURL = Conf.imageServerURL = data.PrimaryNasIp;
       window.firstPage = Conf.firstPage = "Login";
       window.backend = Conf.backend = data.DataIp;
@@ -24456,11 +24455,6 @@ init = function() {
         window.Homecare = Conf.Homecare = data.homecare;
         window.Remarks = Conf.Remarks = data.remarks;
         window.lifestyle = Conf.lifestyle = data.lifestyle;
-        alert("causes:" + data.causes.length);
-        alert("facial:" + data.facial.length);
-        alert("home:" + data.homecare.length);
-        alert("remarks :" + data.remarks.length);
-        alert("lifestyle:" + data.lifestyle.length);
         Store.clear();
         appView = new AppView({
           size: [Conf.screenWidth, Conf.screenHeight]
@@ -25475,7 +25469,6 @@ module.exports = Client = (function() {
     promise.done((function(_this) {
       return function(data) {
         var client, default_profile_pic, newclient;
-        alert("fetch data");
         console.log('fetch for init');
         console.log(data);
         if (data.length !== 0) {
@@ -25617,9 +25610,7 @@ module.exports = Client = (function() {
         }
         _this.session = _this.sessions.length;
         _this.reindex();
-        alert("ok");
-        _this.save();
-        return alert("Save");
+        return _this.save();
       };
     })(this));
   }
@@ -27388,14 +27379,11 @@ module.exports = clientPage = (function(_super) {
           return alert('Please enter the client ID');
         }
       } else {
-        alert("call details");
         promise = this.GetClientDetails(clientId);
         return promise.done(function(data) {
           var age, client;
-          alert("age:" + data.Age);
           age = data.Age;
           client = new Models.Client(clientId, age);
-          alert("checking finised");
           Session.setCurrentClient(client);
           return Dispatcher.emit('page_change', {
             to: 'Dashboard'
@@ -32626,7 +32614,6 @@ module.exports = qCauses = (function(_super) {
         size: [280, 40]
       });
     }
-    alert(data.length);
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
         this.op[i] = new Checker({
@@ -35920,7 +35907,7 @@ module.exports = fullviewView = (function(_super) {
     this._eventInput.on('session_changed:current_photo', (function(_this) {
       return function() {
         if (Session.currentPhoto) {
-          _this.pictureUrl = Session.currentPhoto.largePic();
+          _this.pictureUrl = Session.currentPhoto.originalPic();
         }
         return _createContent.call(_this);
       };
