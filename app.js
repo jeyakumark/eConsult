@@ -28722,8 +28722,10 @@ module.exports = snapPage = (function(_super) {
         if (Session.currentPhoto) {
           id = Session.currentPhoto.getUniqId();
           if (id === _this.doubleTapBuffer) {
+            alert("change orientaiton for paint");
             so = cordova.plugins.screenorientation;
             so.setOrientation(so.Orientation.PORTRAIT);
+            alert("orientation changed");
             return Dispatcher.emit('show_full_picture');
           }
         }
