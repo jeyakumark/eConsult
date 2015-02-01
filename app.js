@@ -28718,14 +28718,10 @@ module.exports = snapPage = (function(_super) {
     })(this));
     this._eventInput.on("right_frame_double_tapped", (function(_this) {
       return function() {
-        var id, so;
+        var id;
         if (Session.currentPhoto) {
           id = Session.currentPhoto.getUniqId();
           if (id === _this.doubleTapBuffer) {
-            alert("change orientaiton for paint");
-            so = cordova.plugins.screenorientation;
-            so.setOrientation(so.Orientation.PORTRAIT);
-            alert("orientation changed");
             return Dispatcher.emit('show_full_picture');
           }
         }
@@ -29222,7 +29218,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (helper = helpers.picture) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.picture); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\" class=\"\" />\r\n  </div>\r\n</div>\r\n-->\r\n\r\n\r\n<iframe src=\"http://maharishi-001-site2.myasp.net/index1.html\" width=\"1024\" height=\"768\"></iframe>";
+    + "\" class=\"\" />\r\n  </div>\r\n</div>\r\n-->\r\n\r\n\r\n<iframe src=\"http://testsvr.eurogrp.com:8017/editor.html\"></iframe>";
   return buffer;
   });
 
