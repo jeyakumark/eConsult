@@ -32789,8 +32789,7 @@ module.exports = qFacial = (function(_super) {
     }
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
-        this.op[i] = new Checker;
-        ({
+        this.op[i] = new Checker({
           text: "none",
           size: [280, 40]
         });
@@ -32962,8 +32961,7 @@ module.exports = qHomecare = (function(_super) {
     }
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
-        this.op[i] = new Checker;
-        ({
+        this.op[i] = new Checker({
           text: "none",
           size: [280, 40]
         });
@@ -33123,8 +33121,7 @@ module.exports = qLifeStyle = (function(_super) {
     }
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
-        this.op[i] = new Checker;
-        ({
+        this.op[i] = new Checker({
           text: "none",
           size: [280, 40]
         });
@@ -33296,8 +33293,7 @@ module.exports = qRemarks = (function(_super) {
     }
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
-        this.op[i] = new Checker;
-        ({
+        this.op[i] = new Checker({
           text: "none",
           size: [280, 40]
         });
