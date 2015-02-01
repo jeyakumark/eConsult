@@ -32626,9 +32626,11 @@ module.exports = qCauses = (function(_super) {
         size: [280, 40]
       });
     }
+    alert(data.length);
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
         this.op[i] = "";
+        alert("emtpy");
       }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
