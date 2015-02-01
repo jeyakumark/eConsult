@@ -25469,6 +25469,7 @@ module.exports = Client = (function() {
     promise.done((function(_this) {
       return function(data) {
         var client, default_profile_pic, newclient;
+        alert("fetch data");
         console.log('fetch for init');
         console.log(data);
         if (data.length !== 0) {
@@ -25610,7 +25611,9 @@ module.exports = Client = (function() {
         }
         _this.session = _this.sessions.length;
         _this.reindex();
-        return _this.save();
+        alert("ok");
+        _this.save();
+        return alert("Save");
       };
     })(this));
   }
@@ -27361,6 +27364,7 @@ module.exports = clientPage = (function(_super) {
           alert("age:" + data.Age);
           age = data.Age;
           client = new Models.Client(clientId, age);
+          alert("checking finised");
           Session.setCurrentClient(client);
           return Dispatcher.emit('page_change', {
             to: 'Dashboard'
