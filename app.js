@@ -27354,9 +27354,11 @@ module.exports = clientPage = (function(_super) {
           return alert('Please enter the client ID');
         }
       } else {
+        alert("call details");
         promise = this.GetClientDetails(clientId);
         return promise.done(function(data) {
           var age, client;
+          alert("age:" + data.Age);
           age = data.Age;
           client = new Models.Client(clientId, age);
           Session.setCurrentClient(client);
@@ -27413,6 +27415,7 @@ module.exports = clientPage = (function(_super) {
 
   clientPage.prototype.GetClientDetailsFromAES = function(clientId) {
     var clients, fetchPromise;
+    alert("checking...." + Conf.authIp);
     clients = {
       "CompanyID": "SG01",
       "CustomerID": clientId
