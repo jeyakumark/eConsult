@@ -32575,7 +32575,7 @@ module.exports = qCauses = (function(_super) {
   };
 
   createOptions = function() {
-    var data, i, json, rows, x, _i, _ref;
+    var data, i, json, rows, x, _i, _j, _ref, _ref1;
     rows = new Fa.FlexibleLayout({
       direction: 1,
       ratios: [1, 1, 1, 1]
@@ -32595,6 +32595,11 @@ module.exports = qCauses = (function(_super) {
         text: json.op,
         size: [280, 40]
       });
+    }
+    if (data.length < 4) {
+      for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
+        this.op[i] = "";
+      }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
     return rows;
@@ -32727,7 +32732,7 @@ module.exports = qFacial = (function(_super) {
   };
 
   createOptions = function() {
-    var data, i, json, rows, x, _i, _ref;
+    var data, i, json, rows, x, _i, _j, _ref, _ref1;
     rows = new Fa.FlexibleLayout({
       direction: 1,
       ratios: [1, 1, 1, 1]
@@ -32747,6 +32752,11 @@ module.exports = qFacial = (function(_super) {
         text: json.op,
         size: [280, 40]
       });
+    }
+    if (data.length < 4) {
+      for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
+        this.op[i] = "";
+      }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
     return rows;
@@ -32891,7 +32901,7 @@ module.exports = qHomecare = (function(_super) {
   };
 
   createOptions = function() {
-    var i, json, rows, x, _i, _ref;
+    var i, json, rows, x, _i, _j, _ref, _ref1;
     rows = new Fa.FlexibleLayout({
       direction: 1,
       ratios: [1, 1, 1, 1]
@@ -32911,6 +32921,11 @@ module.exports = qHomecare = (function(_super) {
         text: json.op,
         size: [280, 40]
       });
+    }
+    if (data.length < 4) {
+      for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
+        this.op[i] = "";
+      }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
     return rows;
@@ -33043,7 +33058,7 @@ module.exports = qLifeStyle = (function(_super) {
   };
 
   createOptions = function() {
-    var data, i, json, rows, x, _i, _ref;
+    var data, i, json, rows, x, _i, _j, _ref, _ref1;
     rows = new Fa.FlexibleLayout({
       direction: 1,
       ratios: [1, 1, 1, 1]
@@ -33063,6 +33078,11 @@ module.exports = qLifeStyle = (function(_super) {
         text: json.op,
         size: [280, 40]
       });
+    }
+    if (data.length < 4) {
+      for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
+        this.op[i] = "";
+      }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
     return rows;
@@ -33207,7 +33227,7 @@ module.exports = qRemarks = (function(_super) {
   };
 
   createOptions = function() {
-    var i, json, rows, x, _i, _ref;
+    var i, json, rows, x, _i, _j, _ref, _ref1;
     rows = new Fa.FlexibleLayout({
       direction: 1,
       ratios: [1, 1, 1, 1]
@@ -33227,6 +33247,11 @@ module.exports = qRemarks = (function(_super) {
         text: json.op,
         size: [280, 40]
       });
+    }
+    if (data.length < 4) {
+      for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
+        this.op[i] = "";
+      }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
     return rows;
