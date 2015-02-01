@@ -24458,7 +24458,7 @@ init = function() {
         alert("causes:" + data.causes.length);
         alert("facial:" + data.facial.length);
         alert("home:" + data.homecare.length);
-        alert("remarks :" + data.remakrs.length);
+        alert("remarks :" + data.remarks.length);
         alert("lifestyle:" + data.lifestyle.length);
         Store.clear();
         appView = new AppView({
