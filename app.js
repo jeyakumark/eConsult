@@ -32629,8 +32629,10 @@ module.exports = qCauses = (function(_super) {
     alert(data.length);
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
-        this.op[i] = "";
-        alert("emtpy");
+        this.op[i] = new Checker({
+          text: "none",
+          size: [280, 40]
+        });
       }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
@@ -32787,7 +32789,11 @@ module.exports = qFacial = (function(_super) {
     }
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
-        this.op[i] = "";
+        this.op[i] = new Checker;
+        ({
+          text: "none",
+          size: [280, 40]
+        });
       }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
@@ -32956,7 +32962,11 @@ module.exports = qHomecare = (function(_super) {
     }
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
-        this.op[i] = "";
+        this.op[i] = new Checker;
+        ({
+          text: "none",
+          size: [280, 40]
+        });
       }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
@@ -33113,7 +33123,11 @@ module.exports = qLifeStyle = (function(_super) {
     }
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
-        this.op[i] = "";
+        this.op[i] = new Checker;
+        ({
+          text: "none",
+          size: [280, 40]
+        });
       }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
@@ -33282,7 +33296,11 @@ module.exports = qRemarks = (function(_super) {
     }
     if (data.length < 4) {
       for (i = _j = _ref1 = data.length; _ref1 <= 3 ? _j <= 3 : _j >= 3; i = _ref1 <= 3 ? ++_j : --_j) {
-        this.op[i] = "";
+        this.op[i] = new Checker;
+        ({
+          text: "none",
+          size: [280, 40]
+        });
       }
     }
     rows.sequenceFrom([this.op[0], this.op[1], this.op[2], this.op[3]]);
