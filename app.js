@@ -24509,11 +24509,13 @@ fail = function(error) {
         return alert("success get checklist");
       });
       if (data.length !== 0) {
+        alert("checklist available");
         window.Causes = Conf.Causes = data.causes;
         window.Facial = Conf.Facial = data.facial;
         window.Homecare = Conf.Homecare = data.homecare;
         window.Remarks = Conf.Remarks = data.remarks;
         window.lifestyle = Conf.lifestyle = data.lifestyle;
+        alert(data.causes.length);
         Store.clear();
         appView = new AppView({
           size: [Conf.screenWidth, Conf.screenHeight]
