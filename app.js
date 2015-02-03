@@ -29160,7 +29160,8 @@ module.exports = ConsultantStore = (function() {
       return deferred.resolve(data);
     });
     promise.fail(function(jqXHR, textStatus, errorThrown) {
-      return alert("Error Get Config:" + jqXHR.status + " " + errorThrown);
+      alert("Error Get Config:" + jqXHR.status + " " + errorThrown);
+      return deferred.reject(data);
     });
     return deferred;
   };
