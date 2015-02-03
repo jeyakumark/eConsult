@@ -24485,10 +24485,12 @@ fail = function(error) {
   alert("get config from web api");
   deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
   return deviceAuthenticated.done(function(data) {
-    var Checklist;
+    var Checklist, key, _i, _len;
     alert(data);
-    alert(data[0].length);
-    alert(data[1].length);
+    for (_i = 0, _len = objects.length; _i < _len; _i++) {
+      key = objects[_i];
+      alert(objects[key]);
+    }
     if (data.Status === "OK") {
       alert("success getting Config");
       str = Stores.Consultant.config(data);
