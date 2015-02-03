@@ -24481,50 +24481,51 @@ readAsText = function(file) {
 };
 
 fail = function(error) {
-  var Checklist, deviceAuthenticated, key;
+  var deviceAuthenticated;
   alert("get config from web api");
   deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
-  deviceAuthenticated.done(function(data) {
-    return alert(data);
+  return deviceAuthenticated.done(function(data) {
+    var Checklist, key;
+    alert(data);
+    for (key in data) {
+      alert(key);
+    }
+    if (data.Status === "OK") {
+      alert("success getting Config");
+      str = Stores.Consultant.config(data);
+      window.imageServerURL = Conf.imageServerURL = data.PrimaryNasIp;
+      window.firstPage = Conf.firstPage = "Login";
+      window.backend = Conf.backend = data.DataIp;
+      window.OutletId = Conf.outletId = data.OutletId;
+      window.branchId = Conf.branchId = data.BranchId;
+      window.brand = Conf.brand = data.Brand;
+      window.deviceType = Conf.deviceType = data.DeviceType;
+      window.authIp = Conf.authIp = data.AuthIp;
+      window.secondaryHost = Conf.secondaryHost = data.SecondaryHost;
+      window.secondaryNasIp = Conf.secondaryNasIp = data.SecondaryNasIp;
+      Checklist = Stores.Consultant.getCheckList(macId);
+      return Checklist.done(function(data) {
+        var appView;
+        alert("success get checklist");
+        if (data.length !== 0) {
+          alert("checklist available");
+          window.Causes = Conf.Causes = data.causes;
+          window.Facial = Conf.Facial = data.facial;
+          window.Homecare = Conf.Homecare = data.homecare;
+          window.Remarks = Conf.Remarks = data.remarks;
+          window.lifestyle = Conf.lifestyle = data.lifestyle;
+          alert(data.causes.length);
+          Store.clear();
+          appView = new AppView({
+            size: [Conf.screenWidth, Conf.screenHeight]
+          });
+          appCtx.add(appView);
+          alert("save config");
+          window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
+        }
+      });
+    }
   });
-  for (key in data) {
-    alert(key);
-  }
-  if (data.Status === "OK") {
-    alert("success getting Config");
-    str = Stores.Consultant.config(data);
-    window.imageServerURL = Conf.imageServerURL = data.PrimaryNasIp;
-    window.firstPage = Conf.firstPage = "Login";
-    window.backend = Conf.backend = data.DataIp;
-    window.OutletId = Conf.outletId = data.OutletId;
-    window.branchId = Conf.branchId = data.BranchId;
-    window.brand = Conf.brand = data.Brand;
-    window.deviceType = Conf.deviceType = data.DeviceType;
-    window.authIp = Conf.authIp = data.AuthIp;
-    window.secondaryHost = Conf.secondaryHost = data.SecondaryHost;
-    window.secondaryNasIp = Conf.secondaryNasIp = data.SecondaryNasIp;
-    Checklist = Stores.Consultant.getCheckList(macId);
-    return Checklist.done(function(data) {
-      var appView;
-      alert("success get checklist");
-      if (data.length !== 0) {
-        alert("checklist available");
-        window.Causes = Conf.Causes = data.causes;
-        window.Facial = Conf.Facial = data.facial;
-        window.Homecare = Conf.Homecare = data.homecare;
-        window.Remarks = Conf.Remarks = data.remarks;
-        window.lifestyle = Conf.lifestyle = data.lifestyle;
-        alert(data.causes.length);
-        Store.clear();
-        appView = new AppView({
-          size: [Conf.screenWidth, Conf.screenHeight]
-        });
-        appCtx.add(appView);
-        alert("save config");
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
-      }
-    });
-  }
 };
 
 copyFS = function(fileSystem) {
