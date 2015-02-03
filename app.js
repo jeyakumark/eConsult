@@ -24448,6 +24448,7 @@ readAsText = function(file) {
   reader.onloadend = function(evt) {
     var Checklist, json, jsonString;
     str = evt.target.result;
+    alert(str);
     jsonString = str.replace(/'/g, '"');
     json = JSON.parse(jsonString);
     alert(jsonString);
