@@ -29157,13 +29157,13 @@ module.exports = ConsultantStore = (function() {
     deferred = $.Deferred();
     promise = this.GetConfig(macId);
     promise.done(function(data) {
-      return deferred.resolve(data);
+      deferred.resolve(data);
+      return deferred;
     });
-    promise.fail(function(jqXHR, textStatus, errorThrown) {
+    return promise.fail(function(jqXHR, textStatus, errorThrown) {
       alert("Error Get Config:" + jqXHR.status + " " + errorThrown);
       return deferred.reject(data);
     });
-    return deferred;
   };
 
   ConsultantStore.GetConfig = function(macId) {
