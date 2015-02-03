@@ -24453,18 +24453,25 @@ readAsText = function(file) {
     json = JSON.parse(jsonString);
     alert(jsonString);
     window.imageServerURL = Conf.imageServerURL = json.PrimaryNasIp;
+    alert(json.PrimaryNasIp);
     window.firstPage = Conf.firstPage = json.FirstPage;
+    alert(json.FirstPage);
     window.backend = Conf.backend = json.DataIp;
-    window.screenWidth = Conf.screenWidth = json.ScreenWidth;
-    window.screenHeight = Conf.screenHeight = json.ScreenHeight;
+    alert(json.DataIp);
     window.OutletId = Conf.outletId = json.OutletId;
+    alert(json.OutletId);
     window.branchId = Conf.branchId = json.BranchId;
+    alert(json.BranchId);
     window.brand = Conf.brand = json.Brand;
+    alert(json.Brand);
     window.deviceType = Conf.deviceType = json.DeviceType;
+    alert(json.DeviceType);
     window.authIp = Conf.authIp = json.AuthIp;
+    alert(json.AuthIp);
     window.secondaryHost = Conf.secondaryHost = json.SecondaryHost;
+    alert(json.SecondaryHost);
     window.secondaryNasIp = Conf.secondaryNasIp = json.SecondaryNasIp;
-    alert(Conf.backend);
+    alert(json.SecondaryNasIp);
     Checklist = Stores.Consultant.getCheckList(macId);
     return Checklist.done(function(data) {
       var appView;
