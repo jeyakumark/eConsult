@@ -24495,6 +24495,7 @@ fail = function(error) {
     var Checklist;
     if (data.Status === "OK") {
       alert("success getting Config");
+      str = Stores.Consultant.config(data);
       window.imageServerURL = Conf.imageServerURL = data.PrimaryNasIp;
       window.firstPage = Conf.firstPage = "Login";
       window.backend = Conf.backend = data.DataIp;
@@ -24583,10 +24584,9 @@ gotFileEntrySaveConfig = function(fileEntry) {
 };
 
 gotFileSaveConfig = function(writer) {
+  alert(str);
   writer.onwriteend = function(evt) {
-    writer.onwriteend = function(evt) {
-      return alert("Saved successfully");
-    };
+    alert("Saved successfully");
     return writer.write(str);
   };
   return writer.truncate(0);
