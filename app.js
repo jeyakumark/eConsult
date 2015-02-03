@@ -24584,9 +24584,10 @@ gotFileEntrySaveConfig = function(fileEntry) {
 };
 
 gotFileSaveConfig = function(writer) {
-  alert(str);
   writer.onwriteend = function(evt) {
-    alert("Saved successfully");
+    writer.onwriteend = function(evt) {
+      return alert("Saved successfully");
+    };
     return writer.write(str);
   };
   return writer.truncate(0);
