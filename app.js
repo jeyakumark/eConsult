@@ -24497,7 +24497,7 @@ fail = function(error) {
       window.authIp = Conf.authIp = data.config.AuthIp;
       window.secondaryHost = Conf.secondaryHost = data.config.SecondaryHost;
       window.secondaryNasIp = Conf.secondaryNasIp = data.config.SecondaryNasIp;
-      alert("config done");
+      alert(Conf.backend);
       Checklist = Stores.Consultant.getCheckList(macId);
       return Checklist.done(function(data) {
         var appView;
