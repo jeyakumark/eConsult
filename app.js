@@ -29150,7 +29150,7 @@ module.exports = ConsultantStore = (function() {
     str = str + "'isProduction' :" + "'yes',";
     str = str + "'FirstPage' :" + "'Login',";
     str = str + "'DataIp' :" + "'" + data.DataIp + "',";
-    str = str + "'PrimaryNasIp' :" + "'" + data.PrimaryNasIp + "'";
+    str = str + "'PrimaryNasIp' :" + "'" + data.PrimaryNasIp + "',";
     str = str + "'ScreenWidth' :" + "'" + data.ScreenWidth + "',";
     str = str + "'ScreenHeight' :" + "'" + data.ScreenHeight + "',";
     str = str + "'OutletId' :" + "'" + data.OutletId + "',";
