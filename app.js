@@ -24411,7 +24411,56 @@ window.appCtx = Fa.MainContext;
 appCtx.setPerspective(1000);
 
 init = function() {
-  return window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+  var deviceAuthenticated;
+  deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
+  deviceAuthenticated.done(function(data) {
+    var Checklist;
+    if (data.message.Status === "OK") {
+      str = Stores.Consultant.config(data);
+      window.imageServerURL = Conf.imageServerURL = data.config.PrimaryNasIp;
+      window.firstPage = Conf.firstPage = "Login";
+      window.backend = Conf.backend = data.config.DataIp;
+      window.OutletId = Conf.outletId = data.config.OutletId;
+      window.branchId = Conf.branchId = data.config.BranchId;
+      window.brand = Conf.brand = data.config.Brand;
+      window.deviceType = Conf.deviceType = data.config.DeviceType;
+      window.authIp = Conf.authIp = data.config.AuthIp;
+      window.secondaryHost = Conf.secondaryHost = data.config.SecondaryHost;
+      window.secondaryNasIp = Conf.secondaryNasIp = data.config.SecondaryNasIp;
+      Checklist = Stores.Consultant.getCheckList(macId);
+      Checklist.done(function(data) {
+        var appView;
+        if (data.length !== 0) {
+          window.Causes = Conf.Causes = data.causes;
+          window.Facial = Conf.Facial = data.facial;
+          window.Homecare = Conf.Homecare = data.homecare;
+          window.Remarks = Conf.Remarks = data.remarks;
+          window.lifestyle = Conf.lifestyle = data.lifestyle;
+          Store.clear();
+          appView = new AppView({
+            size: [Conf.screenWidth, Conf.screenHeight]
+          });
+          appCtx.add(appView);
+          if (Conf.isProduction) {
+            return window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
+          }
+        }
+      });
+      return Checklist.fail(function() {
+        alert("Cannot connect to Backend Checklist");
+      });
+    } else {
+      alert("Error:" + data.message.Message);
+    }
+  });
+  return deviceAuthenticated.fail(function() {
+    alert("Error:Cannot connect to Configuration Server :" + errorThrown);
+    if (Conf.isProduction) {
+      return window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+    } else {
+      alert("Connectin failed to get config");
+    }
+  });
 };
 
 initWithPhonegap = function() {
@@ -24479,49 +24528,7 @@ readAsText = function(file) {
 };
 
 fail = function(error) {
-  var deviceAuthenticated;
-  deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
-  deviceAuthenticated.done(function(data) {
-    var Checklist;
-    if (data.message.Status === "OK") {
-      str = Stores.Consultant.config(data);
-      window.imageServerURL = Conf.imageServerURL = data.config.PrimaryNasIp;
-      window.firstPage = Conf.firstPage = "Login";
-      window.backend = Conf.backend = data.config.DataIp;
-      window.OutletId = Conf.outletId = data.config.OutletId;
-      window.branchId = Conf.branchId = data.config.BranchId;
-      window.brand = Conf.brand = data.config.Brand;
-      window.deviceType = Conf.deviceType = data.config.DeviceType;
-      window.authIp = Conf.authIp = data.config.AuthIp;
-      window.secondaryHost = Conf.secondaryHost = data.config.SecondaryHost;
-      window.secondaryNasIp = Conf.secondaryNasIp = data.config.SecondaryNasIp;
-      Checklist = Stores.Consultant.getCheckList(macId);
-      Checklist.done(function(data) {
-        var appView;
-        if (data.length !== 0) {
-          window.Causes = Conf.Causes = data.causes;
-          window.Facial = Conf.Facial = data.facial;
-          window.Homecare = Conf.Homecare = data.homecare;
-          window.Remarks = Conf.Remarks = data.remarks;
-          window.lifestyle = Conf.lifestyle = data.lifestyle;
-          Store.clear();
-          appView = new AppView({
-            size: [Conf.screenWidth, Conf.screenHeight]
-          });
-          appCtx.add(appView);
-          window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
-        }
-      });
-      return Checklist.fail(function() {
-        alert("Cannot connect to Backend Checklist");
-      });
-    } else {
-      alert("Error:" + data.message.Message);
-    }
-  });
-  return deviceAuthenticated.fail(function() {
-    alert("Error:Cannot connect to Configuration Server :" + errorThrown);
-  });
+  alert("error getting setting file");
 };
 
 copyFS = function(fileSystem) {
