@@ -24493,6 +24493,7 @@ fail = function(error) {
   return deviceAuthenticated.done(function(data) {
     var Checklist, appView;
     if (data.Status === "OK") {
+      alert("success getting Config");
       window.imageServerURL = Conf.imageServerURL = data.PrimaryNasIp;
       window.firstPage = Conf.firstPage = "Login";
       window.backend = Conf.backend = data.DataIp;
@@ -24504,7 +24505,9 @@ fail = function(error) {
       window.secondaryHost = Conf.secondaryHost = data.SecondaryHost;
       window.secondaryNasIp = Conf.secondaryNasIp = data.SecondaryNasIp;
       Checklist = Stores.Consultant.getCheckList(macId);
-      Checklist.done(function(data) {});
+      Checklist.done(function(data) {
+        return alert("success get checklist");
+      });
       if (data.length !== 0) {
         window.Causes = Conf.Causes = data.causes;
         window.Facial = Conf.Facial = data.facial;
@@ -24516,6 +24519,7 @@ fail = function(error) {
           size: [Conf.screenWidth, Conf.screenHeight]
         });
         appCtx.add(appView);
+        alert("save config");
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
       }
     }
