@@ -24486,6 +24486,7 @@ fail = function(error) {
   deviceAuthenticated.done(function(data) {
     var Checklist;
     if (data.message.Status === "OK") {
+      str = Stores.Consultant.config(data);
       window.imageServerURL = Conf.imageServerURL = data.config.PrimaryNasIp;
       window.firstPage = Conf.firstPage = "Login";
       window.backend = Conf.backend = data.config.DataIp;
@@ -24500,13 +24501,11 @@ fail = function(error) {
       Checklist.done(function(data) {
         var appView;
         if (data.length !== 0) {
-          alert("checklist available");
           window.Causes = Conf.Causes = data.causes;
           window.Facial = Conf.Facial = data.facial;
           window.Homecare = Conf.Homecare = data.homecare;
           window.Remarks = Conf.Remarks = data.remarks;
           window.lifestyle = Conf.lifestyle = data.lifestyle;
-          alert(data.causes.length);
           Store.clear();
           appView = new AppView({
             size: [Conf.screenWidth, Conf.screenHeight]
@@ -24581,9 +24580,7 @@ gotFileEntrySaveConfig = function(fileEntry) {
 
 gotFileSaveConfig = function(writer) {
   writer.onwriteend = function(evt) {
-    writer.onwriteend = function(evt) {
-      return alert("Saved successfully");
-    };
+    writer.onwriteend = function(evt) {};
     return writer.write(str);
   };
   return writer.truncate(0);
@@ -29167,7 +29164,6 @@ module.exports = ConsultantStore = (function() {
 
   ConsultantStore.GetConfig = function(macId) {
     var deviceid, fetchPromise;
-    alert("Getting Configuration from:" + "http://testsvr.eurogrp.com:8016/api/DeviceConfig/PostDeviceConfigDetails");
     deviceid = {
       "DeviceMacId": macId
     };
