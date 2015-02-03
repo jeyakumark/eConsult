@@ -24485,24 +24485,19 @@ fail = function(error) {
   alert("get config from web api");
   deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
   return deviceAuthenticated.done(function(data) {
-    var Checklist, key;
-    alert(data.message.Status);
-    for (key in data) {
-      alert(key);
-    }
-    if (data.Status === "OK") {
-      alert("success getting Config");
+    var Checklist;
+    if (data.message.Status === "OK") {
       str = Stores.Consultant.config(data);
-      window.imageServerURL = Conf.imageServerURL = data.PrimaryNasIp;
+      window.imageServerURL = Conf.imageServerURL = data.config.PrimaryNasIp;
       window.firstPage = Conf.firstPage = "Login";
-      window.backend = Conf.backend = data.DataIp;
-      window.OutletId = Conf.outletId = data.OutletId;
-      window.branchId = Conf.branchId = data.BranchId;
-      window.brand = Conf.brand = data.Brand;
-      window.deviceType = Conf.deviceType = data.DeviceType;
-      window.authIp = Conf.authIp = data.AuthIp;
-      window.secondaryHost = Conf.secondaryHost = data.SecondaryHost;
-      window.secondaryNasIp = Conf.secondaryNasIp = data.SecondaryNasIp;
+      window.backend = Conf.backend = data.config.DataIp;
+      window.OutletId = Conf.outletId = data.config.OutletId;
+      window.branchId = Conf.branchId = data.config.BranchId;
+      window.brand = Conf.brand = data.config.Brand;
+      window.deviceType = Conf.deviceType = data.config.DeviceType;
+      window.authIp = Conf.authIp = data.config.AuthIp;
+      window.secondaryHost = Conf.secondaryHost = data.config.SecondaryHost;
+      window.secondaryNasIp = Conf.secondaryNasIp = data.config.SecondaryNasIp;
       Checklist = Stores.Consultant.getCheckList(macId);
       return Checklist.done(function(data) {
         var appView;
@@ -24524,6 +24519,8 @@ fail = function(error) {
           window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
         }
       });
+    } else {
+      alert(data.message.Status);
     }
   });
 };
