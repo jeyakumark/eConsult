@@ -24453,7 +24453,7 @@ init = function() {
       alert("Error:" + data.message.Message);
     }
   });
-  return deviceAuthenticated.fail(function() {
+  return deviceAuthenticated.fail(function(jqXHR, textStatus, errorThrown) {
     alert("Error:Cannot connect to Configuration Server :" + errorThrown);
     if (Conf.isProduction) {
       return window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
