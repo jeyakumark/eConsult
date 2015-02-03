@@ -26108,7 +26108,6 @@ module.exports = Client = (function() {
 
   Client.prototype.GetClientDetailsFromAES = function(clientId) {
     var clients, fetchPromise;
-    alert("checking....");
     clients = {
       "CompanyID": "SG01",
       "CustomerID": clientId
@@ -27436,7 +27435,6 @@ module.exports = clientPage = (function(_super) {
 
   clientPage.prototype.GetClientDetailsFromAES = function(clientId) {
     var clients, fetchPromise;
-    alert("checking...." + Conf.authIp);
     clients = {
       "CompanyID": "SG01",
       "CustomerID": clientId
