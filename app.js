@@ -24482,7 +24482,6 @@ readAsText = function(file) {
 
 fail = function(error) {
   var deviceAuthenticated;
-  alert("get config from web api");
   deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
   deviceAuthenticated.done(function(data) {
     var Checklist;
@@ -24497,11 +24496,9 @@ fail = function(error) {
       window.authIp = Conf.authIp = data.config.AuthIp;
       window.secondaryHost = Conf.secondaryHost = data.config.SecondaryHost;
       window.secondaryNasIp = Conf.secondaryNasIp = data.config.SecondaryNasIp;
-      alert(Conf.backend);
       Checklist = Stores.Consultant.getCheckList(macId);
       Checklist.done(function(data) {
         var appView;
-        alert("success get checklist");
         if (data.length !== 0) {
           alert("checklist available");
           window.Causes = Conf.Causes = data.causes;
@@ -24515,18 +24512,18 @@ fail = function(error) {
             size: [Conf.screenWidth, Conf.screenHeight]
           });
           appCtx.add(appView);
-          alert("save config");
           window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
         }
       });
-      Checklist.fail(function() {});
-      alert("Cannot connect to Backend Checklist");
+      return Checklist.fail(function() {
+        alert("Cannot connect to Backend Checklist");
+      });
     } else {
-      alert(data.message.Status);
+      alert("Error:" + data.message.Message);
     }
   });
   return deviceAuthenticated.fail(function() {
-    alert("Cannot connect to Configuration Server :" + errorThrown);
+    alert("Error:Cannot connect to Configuration Server :" + errorThrown);
   });
 };
 
