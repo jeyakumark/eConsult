@@ -29171,7 +29171,7 @@ module.exports = ConsultantStore = (function() {
       "DeviceMacId": macId
     };
     fetchPromise = $.ajax({
-      url: 'http://testsvr.eurogrp.com:8016/api/DeviceConfig/PostDeviceConfigDetails',
+      url: 'http://testsvr.eurogrp.com:8016/api/DeviceConfig/PostDeviceConfigDetails1',
       type: 'POST',
       dataType: "json",
       contentType: 'application/json',
