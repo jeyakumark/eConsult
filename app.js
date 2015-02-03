@@ -24484,7 +24484,7 @@ fail = function(error) {
   var deviceAuthenticated;
   alert("get config from web api");
   deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
-  return deviceAuthenticated.done(function(data) {
+  deviceAuthenticated.done(function(data) {
     var Checklist;
     if (data.message.Status === "OK") {
       window.imageServerURL = Conf.imageServerURL = data.config.PrimaryNasIp;
@@ -24499,7 +24499,7 @@ fail = function(error) {
       window.secondaryNasIp = Conf.secondaryNasIp = data.config.SecondaryNasIp;
       alert(Conf.backend);
       Checklist = Stores.Consultant.getCheckList(macId);
-      return Checklist.done(function(data) {
+      Checklist.done(function(data) {
         var appView;
         alert("success get checklist");
         if (data.length !== 0) {
@@ -24519,9 +24519,14 @@ fail = function(error) {
           window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
         }
       });
+      Checklist.fail(function() {});
+      alert("Cannot connect to Backend Checklist");
     } else {
       alert(data.message.Status);
     }
+  });
+  return deviceAuthenticated.fail(function() {
+    alert("Cannot connect to Configuration Server :" + errorThrown);
   });
 };
 
