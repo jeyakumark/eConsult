@@ -29141,7 +29141,7 @@ module.exports = ConsultantStore = (function() {
     var str;
     str = "{";
     str = str + "'isProduction' :" + "'yes',";
-    str = str + "'firstPage' :" + "'Login',";
+    str = str + "'FirstPage' :" + "'Login',";
     str = str + "'DataIp' :" + "'" + data.DataIp + "',";
     str = str + "'PrimaryNasIp' :" + "'" + data.PrimaryNasIp + "'";
     str = str + "'ScreenWidth' :" + "'" + data.ScreenWidth + "',";
