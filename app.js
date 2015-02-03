@@ -24491,7 +24491,7 @@ fail = function(error) {
   alert("get config from web api");
   deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
   return deviceAuthenticated.done(function(data) {
-    var Checklist, appView;
+    var Checklist;
     if (data.Status === "OK") {
       alert("success getting Config");
       window.imageServerURL = Conf.imageServerURL = data.PrimaryNasIp;
@@ -24505,25 +24505,26 @@ fail = function(error) {
       window.secondaryHost = Conf.secondaryHost = data.SecondaryHost;
       window.secondaryNasIp = Conf.secondaryNasIp = data.SecondaryNasIp;
       Checklist = Stores.Consultant.getCheckList(macId);
-      Checklist.done(function(data) {
-        return alert("success get checklist");
+      return Checklist.done(function(data) {
+        var appView;
+        alert("success get checklist");
+        if (data.length !== 0) {
+          alert("checklist available");
+          window.Causes = Conf.Causes = data.causes;
+          window.Facial = Conf.Facial = data.facial;
+          window.Homecare = Conf.Homecare = data.homecare;
+          window.Remarks = Conf.Remarks = data.remarks;
+          window.lifestyle = Conf.lifestyle = data.lifestyle;
+          alert(data.causes.length);
+          Store.clear();
+          appView = new AppView({
+            size: [Conf.screenWidth, Conf.screenHeight]
+          });
+          appCtx.add(appView);
+          alert("save config");
+          window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
+        }
       });
-      if (data.length !== 0) {
-        alert("checklist available");
-        window.Causes = Conf.Causes = data.causes;
-        window.Facial = Conf.Facial = data.facial;
-        window.Homecare = Conf.Homecare = data.homecare;
-        window.Remarks = Conf.Remarks = data.remarks;
-        window.lifestyle = Conf.lifestyle = data.lifestyle;
-        alert(data.causes.length);
-        Store.clear();
-        appView = new AppView({
-          size: [Conf.screenWidth, Conf.screenHeight]
-        });
-        appCtx.add(appView);
-        alert("save config");
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
-      }
     }
   });
 };
