@@ -24487,7 +24487,6 @@ fail = function(error) {
   return deviceAuthenticated.done(function(data) {
     var Checklist;
     if (data.message.Status === "OK") {
-      str = Stores.Consultant.config(data);
       window.imageServerURL = Conf.imageServerURL = data.config.PrimaryNasIp;
       window.firstPage = Conf.firstPage = "Login";
       window.backend = Conf.backend = data.config.DataIp;
@@ -24498,6 +24497,7 @@ fail = function(error) {
       window.authIp = Conf.authIp = data.config.AuthIp;
       window.secondaryHost = Conf.secondaryHost = data.config.SecondaryHost;
       window.secondaryNasIp = Conf.secondaryNasIp = data.config.SecondaryNasIp;
+      alert("config done");
       Checklist = Stores.Consultant.getCheckList(macId);
       return Checklist.done(function(data) {
         var appView;
