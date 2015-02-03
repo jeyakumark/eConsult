@@ -24488,6 +24488,7 @@ readAsText = function(file) {
 
 fail = function(error) {
   var deviceAuthenticated;
+  alert("get config from web api");
   deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
   return deviceAuthenticated.done(function(data) {
     var Checklist, appView;
