@@ -24464,6 +24464,7 @@ readAsText = function(file) {
     window.authIp = Conf.authIp = json.authIp;
     window.secondaryHost = Conf.secondaryHost = json.secondaryHost;
     window.secondaryNasIp = Conf.secondaryNasIp = json.secondaryNasIp;
+    alert(Conf.backend);
     Checklist = Stores.Consultant.getCheckList(macId);
     return Checklist.done(function(data) {
       var appView;
