@@ -24444,10 +24444,8 @@ readAsText = function(file) {
   reader.onloadend = function(evt) {
     var Checklist, json, jsonString;
     str = evt.target.result;
-    alert(str);
     jsonString = str.replace(/'/g, '"');
     json = JSON.parse(jsonString);
-    alert(jsonString);
     window.imageServerURL = Conf.imageServerURL = json.PrimaryNasIp;
     window.firstPage = Conf.firstPage = json.FirstPage;
     window.backend = Conf.backend = json.DataIp;
