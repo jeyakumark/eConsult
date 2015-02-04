@@ -24487,7 +24487,7 @@ fail = function(error) {
   return deviceAuthenticated.done(function(data) {
     var Checklist;
     alert("after done");
-    alert(data.Status);
+    alert(data[1].Status);
     if (data.Status === "OK") {
       alert("success getting Config");
       str = Stores.Consultant.config(data);
