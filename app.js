@@ -24486,8 +24486,8 @@ fail = function(error) {
   deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
   return deviceAuthenticated.done(function(data) {
     var Checklist;
-    alert("after done");
-    alert(data[1].Status);
+    alert(data);
+    alert(data[0].Status);
     if (data.Status === "OK") {
       alert("success getting Config");
       str = Stores.Consultant.config(data);
