@@ -24426,24 +24426,20 @@ initWithPhonegap = function() {
 
 gotFS = function(fileSystem) {
   var spath;
-  alert("gotfs");
   spath = fileSystem.root.toURL() + "/setting.txt";
   window.resolveLocalFileSystemURI(spath, gotFileEntry, fail);
 };
 
 gotFileEntry = function(fileEntry) {
-  alert("entry");
   fileEntry.file(gotFile, fail);
 };
 
 gotFile = function(file) {
-  alert("fileread");
   readAsText(file);
 };
 
 readAsText = function(file) {
   var reader;
-  alert("reading file");
   reader = new FileReader();
   reader.onloadend = function(evt) {
     var Checklist, json, jsonString;
@@ -24453,29 +24449,18 @@ readAsText = function(file) {
     json = JSON.parse(jsonString);
     alert(jsonString);
     window.imageServerURL = Conf.imageServerURL = json.PrimaryNasIp;
-    alert(json.PrimaryNasIp);
     window.firstPage = Conf.firstPage = json.FirstPage;
-    alert(json.FirstPage);
     window.backend = Conf.backend = json.DataIp;
-    alert(json.DataIp);
     window.OutletId = Conf.outletId = json.OutletId;
-    alert(json.OutletId);
     window.branchId = Conf.branchId = json.BranchId;
-    alert(json.BranchId);
     window.brand = Conf.brand = json.Brand;
-    alert(json.Brand);
     window.deviceType = Conf.deviceType = json.DeviceType;
-    alert(json.DeviceType);
     window.authIp = Conf.authIp = json.AuthIp;
-    alert(json.AuthIp);
     window.secondaryHost = Conf.secondaryHost = json.SecondaryHost;
-    alert(json.SecondaryHost);
     window.secondaryNasIp = Conf.secondaryNasIp = json.SecondaryNasIp;
-    alert(json.SecondaryNasIp);
     Checklist = Stores.Consultant.getCheckList(macId);
     return Checklist.done(function(data) {
       var appView;
-      alert("success get checklist");
       if (data.length !== 0) {
         window.Causes = Conf.Causes = data.causes;
         window.Facial = Conf.Facial = data.facial;
@@ -24501,6 +24486,8 @@ fail = function(error) {
   deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
   return deviceAuthenticated.done(function(data) {
     var Checklist;
+    alert("after done");
+    alert(data.Status);
     if (data.Status === "OK") {
       alert("success getting Config");
       str = Stores.Consultant.config(data);
@@ -29179,11 +29166,12 @@ module.exports = ConsultantStore = (function() {
 
   ConsultantStore.GetConfig = function(macId) {
     var deviceid, fetchPromise;
+    alert("Getting Configuration from:" + "http://testsvr.eurogrp.com:8016/api/DeviceConfig/PostDeviceConfigDetails");
     deviceid = {
       "DeviceMacId": macId
     };
     fetchPromise = $.ajax({
-      url: 'http://testsvr.eurogrp.com:8016/api/Config/PostDeviceConfigDetails',
+      url: 'http://testsvr.eurogrp.com:8016/api/DeviceConfig/PostDeviceConfigDetails',
       type: 'POST',
       dataType: "json",
       contentType: 'application/json',
