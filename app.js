@@ -24320,7 +24320,7 @@ return jQuery;
 
 },{}],68:[function(require,module,exports){
 'use strict';
-var AppView, Conf, FastClick, copyFS, data, dest, fail, failConfig, failCopy, gFileSystem, gotCopyFileEntry, gotFS, gotFSConfig, gotFile, gotFileConfig, gotFileEntry, gotFileEntryConfig, init, initWithPhonegap, macId, readAsText, resOnSuccess, str, successCopy;
+var AppView, Conf, FastClick, copyFS, dest, fail, failConfig, failCopy, failsaveConfig, gFileSystem, gotCopyFileEntry, gotFS, gotFile, gotFileEntry, gotFileEntrySaveConfig, gotFileSaveConfig, init, initWithPhonegap, macId, readAsText, resOnSuccess, saveConfig, str, successCopy;
 
 window.Setting = '';
 
@@ -24333,23 +24333,6 @@ str = '';
 macId = "TEST";
 
 window.checkList = "";
-
-data = {
-  "isProduction": "yes",
-  "firstPage": "Login",
-  "backend": "http://egcbsc.com:1337",
-  "imageServerURL": "http://creativesatwork.me:8080/upload",
-  "ScreenWidth": "1024",
-  "ScreenHeight": "768",
-  "OutletId": "101",
-  "BranchId": "1001",
-  "Brand": "NEWYORK",
-  "DeviceType": "IOS",
-  "AuthIp": "http://testsvr.eurogrp.com:8006",
-  "SecondaryHost": "http://testsvr.eurogrp.com:8006",
-  "SecondaryNasIp": "http://creativesatwork.me:8080/upload",
-  "Status": "OK"
-};
 
 require("./..\\..\\bower_components\\famous-polyfills\\index.js");
 
@@ -24428,43 +24411,7 @@ window.appCtx = Fa.MainContext;
 appCtx.setPerspective(1000);
 
 init = function() {
-  var deviceAuthenticated;
-  deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
-  return deviceAuthenticated.done(function(data) {
-    var Checklist;
-    if (data.Status === "OK") {
-      window.imageServerURL = Conf.imageServerURL = data.PrimaryNasIp;
-      window.firstPage = Conf.firstPage = "Login";
-      window.backend = Conf.backend = data.DataIp;
-      window.OutletId = Conf.outletId = data.OutletId;
-      window.branchId = Conf.branchId = data.BranchId;
-      window.brand = Conf.brand = data.Brand;
-      window.deviceType = Conf.deviceType = data.DeviceType;
-      window.authIp = Conf.authIp = data.AuthIp;
-      window.secondaryHost = Conf.secondaryHost = data.SecondaryHost;
-      window.secondaryNasIp = Conf.secondaryNasIp = data.SecondaryNasIp;
-    } else {
-      alert("error getting config");
-    }
-    Checklist = Stores.Consultant.getCheckList(macId);
-    return Checklist.done(function(data) {
-      var appView;
-      if (data.length !== 0) {
-        window.Causes = Conf.Causes = data.causes;
-        window.Facial = Conf.Facial = data.facial;
-        window.Homecare = Conf.Homecare = data.homecare;
-        window.Remarks = Conf.Remarks = data.remarks;
-        window.lifestyle = Conf.lifestyle = data.lifestyle;
-        Store.clear();
-        appView = new AppView({
-          size: [Conf.screenWidth, Conf.screenHeight]
-        });
-        appCtx.add(appView);
-      } else {
-        alert("Checklist not amended");
-      }
-    });
-  });
+  return window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 };
 
 initWithPhonegap = function() {
@@ -24479,23 +24426,27 @@ initWithPhonegap = function() {
 
 gotFS = function(fileSystem) {
   var spath;
+  alert("gotfs");
   spath = fileSystem.root.toURL() + "/setting.txt";
   window.resolveLocalFileSystemURI(spath, gotFileEntry, fail);
 };
 
 gotFileEntry = function(fileEntry) {
+  alert("entry");
   fileEntry.file(gotFile, fail);
 };
 
 gotFile = function(file) {
+  alert("fileread");
   readAsText(file);
 };
 
 readAsText = function(file) {
   var reader;
+  alert("reading file");
   reader = new FileReader();
   reader.onloadend = function(evt) {
-    var json, jsonString;
+    var Checklist, json, jsonString;
     str = evt.target.result;
     jsonString = str.replace(/'/g, '"');
     json = JSON.parse(jsonString);
@@ -24512,19 +24463,62 @@ readAsText = function(file) {
     window.authIp = Conf.authIp = json.authIp;
     window.secondaryHost = Conf.secondaryHost = json.secondaryHost;
     window.secondaryNasIp = Conf.secondaryNasIp = json.secondaryNasIp;
-    return init.call(this);
+    Checklist = Stores.Consultant.getCheckList(macId);
+    return Checklist.done(function(data) {
+      var appView;
+      alert("success get checklist");
+      if (data.length !== 0) {
+        window.Causes = Conf.Causes = data.causes;
+        window.Facial = Conf.Facial = data.facial;
+        window.Homecare = Conf.Homecare = data.homecare;
+        window.Remarks = Conf.Remarks = data.remarks;
+        window.lifestyle = Conf.lifestyle = data.lifestyle;
+        Store.clear();
+        appView = new AppView({
+          size: [Conf.screenWidth, Conf.screenHeight]
+        });
+        return appCtx.add(appView);
+      } else {
+        alert("Checklists not amended");
+      }
+    });
   };
   return reader.readAsText(file);
 };
 
 fail = function(error) {
-  if (error.code === FileError.NOT_FOUND_ERR) {
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, copyFS, failCopy);
-  } else if (error.code === FileError.SECURITY_ERR) {
-    alert("security error");
-  } else {
-    alert(error.code);
-  }
+  var deviceAuthenticated;
+  deviceAuthenticated = Stores.Consultant.GetDeviceConfig(macId);
+  return deviceAuthenticated.done(function(data) {
+    var Checklist, appView;
+    if (data.Status === "OK") {
+      window.imageServerURL = Conf.imageServerURL = data.PrimaryNasIp;
+      window.firstPage = Conf.firstPage = "Login";
+      window.backend = Conf.backend = data.DataIp;
+      window.OutletId = Conf.outletId = data.OutletId;
+      window.branchId = Conf.branchId = data.BranchId;
+      window.brand = Conf.brand = data.Brand;
+      window.deviceType = Conf.deviceType = data.DeviceType;
+      window.authIp = Conf.authIp = data.AuthIp;
+      window.secondaryHost = Conf.secondaryHost = data.SecondaryHost;
+      window.secondaryNasIp = Conf.secondaryNasIp = data.SecondaryNasIp;
+      Checklist = Stores.Consultant.getCheckList(macId);
+      Checklist.done(function(data) {});
+      if (data.length !== 0) {
+        window.Causes = Conf.Causes = data.causes;
+        window.Facial = Conf.Facial = data.facial;
+        window.Homecare = Conf.Homecare = data.homecare;
+        window.Remarks = Conf.Remarks = data.remarks;
+        window.lifestyle = Conf.lifestyle = data.lifestyle;
+        Store.clear();
+        appView = new AppView({
+          size: [Conf.screenWidth, Conf.screenHeight]
+        });
+        appCtx.add(appView);
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, saveConfig, failsaveConfig);
+      }
+    }
+  });
 };
 
 copyFS = function(fileSystem) {
@@ -24562,26 +24556,29 @@ failCopy = function(error) {
   alert("error copy file from www -> document directory");
 };
 
-gotFSConfig = function(fileSystem) {
+saveConfig = function(fileSystem) {
   var spath;
-  spath = fileSystem.root.toURL() + "/Data/" + "setting.txt";
+  spath = fileSystem.root.toURL() + "/" + "setting.txt";
   fileSystem.root.getFile("setting.txt", {
     create: true,
     exclusive: false
-  }, gotFileEntryConfig, failConfig);
+  }, gotFileEntrySaveConfig, failConfig);
 };
 
-gotFileEntryConfig = function(fileEntry) {
-  fileEntry.createWriter(gotFileConfig, failConfig);
+failsaveConfig = function(error) {
+  alert("Fail save config to the device");
 };
 
-gotFileConfig = function(writer) {
+gotFileEntrySaveConfig = function(fileEntry) {
+  fileEntry.createWriter(gotFileSaveConfig, failConfig);
+};
+
+gotFileSaveConfig = function(writer) {
   writer.onwriteend = function(evt) {
     writer.onwriteend = function(evt) {
       return alert("Saved successfully");
     };
-    writer.write(str);
-    return window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+    return writer.write(str);
   };
   return writer.truncate(0);
 };
@@ -24589,11 +24586,11 @@ gotFileConfig = function(writer) {
 failConfig = function(error) {
   alert("error occured");
   if (error.code === FileError.NOT_FOUND_ERR) {
-    alert(error.code.toString() + ":config file not found");
+    alert(error.code.toString() + ":Copy config to local file failed");
   } else if (error.code === FileError.SECURITY_ERR) {
-    alert("security error");
+    alert("Copy config to local file failed");
   } else {
-    alert(error.code);
+    alert("Copy config to local file failed:" + error.code);
   }
 };
 
